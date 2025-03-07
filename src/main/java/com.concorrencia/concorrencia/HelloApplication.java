@@ -1,4 +1,4 @@
-package com.example.demo;
+package concorrencia.concorrencia;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package com.example.demo;
+package concorrencia.concorrencia;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

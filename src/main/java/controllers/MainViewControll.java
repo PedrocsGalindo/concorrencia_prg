@@ -24,7 +24,7 @@ public class MainViewControll {
     void click_button_testar(ActionEvent event) {
         try{
             // tela de grafico
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("views/graphicView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/graphicView.fxml"));
             Parent root = loader.load();
 
             // janela atula

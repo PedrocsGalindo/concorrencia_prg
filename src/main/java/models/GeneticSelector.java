@@ -1,6 +1,10 @@
 package models;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class GeneticSelector {
     public final float TAXAMUTACAO = 0.1f; // 10% de chance de mutação

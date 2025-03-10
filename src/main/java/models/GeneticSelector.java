@@ -11,6 +11,12 @@ public class GeneticSelector {
     public final int GERACOES = 100;
     public final int POPULACAO = 1000;
     public ExecutorService executor = Executors.newFixedThreadPool(5); // Executor com 5 threads
+    public GeneticSelector() {
+    }
+    public GeneticSelector(int nThreads) {
+        this.executor = Executors.newFixedThreadPool(nThreads);
+
+    }
     private Grade[] Popular(Grade base) throws InterruptedException {
         Grade[] populacao = new Grade[POPULACAO];
         List<Future<Void>> futures = new ArrayList<>(); // Lista para armazenar os futuros

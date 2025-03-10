@@ -27,9 +27,19 @@ public class MainViewControll {
 
     @FXML
     void click_button_testar(ActionEvent event) {
+        System.out.println(textField_theard.getText());
 
         if (textField_theard.getText().isEmpty()){
+            Alert alerta = new Alert(AlertType.WARNING);
+            alerta.setTitle("Aviso");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Você deve preencher o campo com o numero de threads");
+            alerta.showAndWait();
+        } else {
             try{
+                // numero de threads
+                int nThreads = Integer.parseInt(textField_theard.getText());
+
                 // tela de grafico
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/graphicView.fxml"));
                 Parent root = loader.load();
@@ -40,8 +50,9 @@ public class MainViewControll {
                 stage.setTitle("Nova Tela");
                 stage.show();
 
+                //Intanciação e execução do GeneticSelector
                 long Inicial = System.currentTimeMillis();
-                GeneticSelector selector = new GeneticSelector();
+                GeneticSelector selector = new GeneticSelector(nThreads);
                 Grade base = new Grade(new ArrayList<>());
                 Grade melhorGrade = selector.Gerar(base);
                 System.out.println("Melhor grade encontrada com penalização: " + melhorGrade.turmas +"\nFitting: " + melhorGrade.fitting());
@@ -52,13 +63,14 @@ public class MainViewControll {
             } catch (IOException e) {
                 System.err.println("Erro ao carregar a nova tela: " + e.getMessage());
                 e.printStackTrace();
+
+            } catch (NumberFormatException e){
+                Alert alerta = new Alert(AlertType.WARNING);
+                alerta.setTitle("Aviso");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Você deve preencher o campo com numero");
+                alerta.showAndWait();
             }
-        } else {
-            Alert alerta = new Alert(AlertType.WARNING);
-            alerta.setTitle("Aviso");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Você deve preencher o campo com o numero de threads");
-            alerta.showAndWait();
         }
     }
 }

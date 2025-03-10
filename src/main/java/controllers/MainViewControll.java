@@ -11,8 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import models.GeneticSelector;
+import models.Grade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainViewControll {
 
@@ -31,11 +34,20 @@ public class MainViewControll {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/graphicView.fxml"));
                 Parent root = loader.load();
 
-                // janela atula
+                // janela atual
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Nova Tela");
                 stage.show();
+
+                long Inicial = System.currentTimeMillis();
+                GeneticSelector selector = new GeneticSelector();
+                Grade base = new Grade(new ArrayList<>());
+                Grade melhorGrade = selector.Gerar(base);
+                System.out.println("Melhor grade encontrada com penalização: " + melhorGrade.turmas +"\nFitting: " + melhorGrade.fitting());
+                long Final = System.currentTimeMillis();
+                long Total = Final - Inicial;
+                System.out.println("ms: " + Total);
 
             } catch (IOException e) {
                 System.err.println("Erro ao carregar a nova tela: " + e.getMessage());
@@ -45,7 +57,7 @@ public class MainViewControll {
             Alert alerta = new Alert(AlertType.WARNING);
             alerta.setTitle("Aviso");
             alerta.setHeaderText(null);
-            alerta.setContentText("Você deve preencher o campo com o nuemro de threads");
+            alerta.setContentText("Você deve preencher o campo com o numero de threads");
             alerta.showAndWait();
         }
     }

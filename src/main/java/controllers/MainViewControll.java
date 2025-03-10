@@ -11,13 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import models.GeneticSelector;
-import models.Grade;
-
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class MainViewControll {
+
+    static int nThreads;
 
     @FXML
     private Button button_testar;
@@ -38,7 +37,7 @@ public class MainViewControll {
         } else {
             try{
                 // numero de threads
-                int nThreads = Integer.parseInt(textField_theard.getText());
+                nThreads = Integer.parseInt(textField_theard.getText());
 
                 // tela de grafico
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/graphicView.fxml"));
@@ -49,16 +48,6 @@ public class MainViewControll {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Nova Tela");
                 stage.show();
-
-                //Intanciação e execução do GeneticSelector
-                long Inicial = System.currentTimeMillis();
-                GeneticSelector selector = new GeneticSelector(nThreads);
-                Grade base = new Grade(new ArrayList<>());
-                Grade melhorGrade = selector.Gerar(base);
-                System.out.println("Melhor grade encontrada com penalização: " + melhorGrade.turmas +"\nFitting: " + melhorGrade.fitting());
-                long Final = System.currentTimeMillis();
-                long Total = Final - Inicial;
-                System.out.println("ms: " + Total);
 
             } catch (IOException e) {
                 System.err.println("Erro ao carregar a nova tela: " + e.getMessage());

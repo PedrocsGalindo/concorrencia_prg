@@ -2,6 +2,7 @@ module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.desktop;
 
     // Abrindo os pacotes para reflexão do JavaFX
     opens controllers to javafx.fxml;

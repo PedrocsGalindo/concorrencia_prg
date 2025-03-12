@@ -26,7 +26,6 @@ public class MainViewControll {
 
     @FXML
     void click_button_testar(ActionEvent event) {
-        System.out.println(textField_theard.getText());
 
         if (textField_theard.getText().isEmpty()){
             Alert alerta = new Alert(AlertType.WARNING);
